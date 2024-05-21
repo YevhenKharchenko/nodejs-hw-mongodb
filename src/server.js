@@ -24,12 +24,6 @@ export const setupServer = () => {
     }),
   );
 
-  app.get('/', (req, res) => {
-    res.json({
-      message: 'Hello world!',
-    });
-  });
-
   app.get('/contacts', async (req, res) => {
     const contacts = await getAllContacts();
 
