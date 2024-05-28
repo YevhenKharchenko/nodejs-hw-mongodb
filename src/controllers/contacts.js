@@ -1,4 +1,6 @@
 import createHttpError from 'http-errors';
+import { isValidObjectId } from 'mongoose';
+
 import {
   getAllContacts,
   getContactById,
@@ -19,6 +21,11 @@ export const getContactsController = async (req, res, next) => {
 
 export const getContactByIdController = async (req, res, next) => {
   const { contactId } = req.params;
+
+  if (!isValidObjectId(contactId)) {
+    return next(createHttpError(404, `Contact with id ${contactId} not found`));
+  }
+
   const contact = await getContactById(contactId);
 
   if (!contact) {
@@ -33,6 +40,14 @@ export const getContactByIdController = async (req, res, next) => {
 };
 
 export const createContactController = async (req, res, next) => {
+  const { name, phoneNumber } = req.body;
+
+  if (!name || !phoneNumber) {
+    return next(
+      createHttpError(400, `Missing required property 'name' or 'number'`),
+    );
+  }
+
   const contact = await createContact(req.body);
 
   res.status(201).json({
@@ -48,7 +63,7 @@ export const patchContactController = async (req, res, next) => {
   const result = await updateContact(contactId, req.body);
 
   if (!result) {
-    return next(createHttpError(404), `Contact with id ${contactId} not found`);
+    return next(createHttpError(404, `Contact with id ${contactId} not found`));
   }
 
   res.status(200).json({
