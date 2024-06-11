@@ -1,5 +1,4 @@
 import createHttpError from 'http-errors';
-import { isValidObjectId } from 'mongoose';
 
 import {
   getAllContacts,
@@ -16,6 +15,7 @@ export const getContactsController = async (req, res, next) => {
   const { page, perPage } = parsePaginationParams(req.query);
   const { sortBy, sortOrder } = parseSortParams(req.query);
   const filter = parseFilterParams(req.query);
+  const userId = req.user._id;
 
   const contacts = await getAllContacts({
     page,
@@ -23,6 +23,7 @@ export const getContactsController = async (req, res, next) => {
     sortBy,
     sortOrder,
     filter,
+    userId,
   });
 
   res.status(200).json({
@@ -57,7 +58,13 @@ export const createContactController = async (req, res, next) => {
     );
   }
 
-  const contact = await createContact(req.body);
+  const userId = req.user._id;
+
+  if (!userId) {
+    return next(createHttpError(400, `Missing required property userId`));
+  }
+
+  const contact = await createContact(req.body, userId);
 
   res.status(201).json({
     status: 201,
