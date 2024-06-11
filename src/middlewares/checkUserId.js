@@ -12,7 +12,12 @@ export const checkUserId = async (req, res, next) => {
   });
 
   if (!contact) {
-    return next(createHttpError(403, 'Current user has no such rights'));
+    return next(
+      createHttpError(
+        403,
+        'Current user do not have permission to access this contact',
+      ),
+    );
   }
 
   next();
