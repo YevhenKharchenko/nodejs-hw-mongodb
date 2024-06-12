@@ -35,13 +35,13 @@ export const getAllContacts = async ({
   const paginationData = calculatePaginationData(contactsCount, perPage, page);
 
   return {
-    data: contacts,
+    contacts,
     ...paginationData,
   };
 };
 
-export const getContactById = async (contactId) => {
-  const contact = await ContactsCollection.findById(contactId);
+export const getContactById = async (contactId, userId) => {
+  const contact = await ContactsCollection.findOne({ _id: contactId, userId });
   return contact;
 };
 
