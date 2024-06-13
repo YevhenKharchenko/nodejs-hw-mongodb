@@ -7,9 +7,9 @@ import { SessionsCollection } from '../db/models/session.js';
 import { FIFTEEN_MINUTES, ONE_DAY } from '../constants/index.js';
 
 export const registerUser = async (payload) => {
-  const isEmailInUse = await UsersCollection.findOne({ email: payload.email });
+  const email = await UsersCollection.findOne({ email: payload.email });
 
-  if (isEmailInUse) {
+  if (email) {
     throw createHttpError(409, 'Email in use');
   }
 

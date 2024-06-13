@@ -12,7 +12,7 @@ import {
   updateContactSchema,
 } from '../validation/contacts.js';
 import { validateBody } from '../middlewares/validateBody.js';
-import { validateMongoId } from '../middlewares/validateId.js';
+import { validateMongoId } from '../middlewares/validateMongoId.js';
 import { authenticate } from '../middlewares/authenticate.js';
 import { checkUserId } from '../middlewares/checkUserId.js';
 
