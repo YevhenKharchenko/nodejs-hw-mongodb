@@ -33,10 +33,6 @@ router.get(
 router.post(
   '/',
   upload.single('photo'),
-  (req, res, next) => {
-    console.log('hello', req.body);
-    next();
-  },
   validateBody(createContactSchema),
   ctrlWrapper(createContactController),
 );
@@ -45,8 +41,8 @@ router.patch(
   '/:contactId',
   checkUserId,
   validateMongoId('contactId'),
-  validateBody(updateContactSchema),
   upload.single('photo'),
+  validateBody(updateContactSchema),
   ctrlWrapper(patchContactController),
 );
 
