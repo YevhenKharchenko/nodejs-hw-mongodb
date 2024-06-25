@@ -1073,7 +1073,7 @@
                   "properties": {
                     "message": {
                       "type": "string",
-                      "example": "Missing required property userId"
+                      "example": "Missing required property"
                     }
                   }
                 }
