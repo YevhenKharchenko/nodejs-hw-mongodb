@@ -1,7 +1,7 @@
 tags:
   - Auth
-summary: Logout contact
-operationId: logoutContact
+summary: Logout user
+operationId: logoutUser
 description: 'Logout a user with payload'
 security:
   - bearerAuth: []

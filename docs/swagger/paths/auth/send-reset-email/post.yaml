@@ -2,7 +2,7 @@ tags:
   - Auth
 summary: Request reset email
 operationId: requestResetEmail
-description: 'Request reset email'
+description: 'Request email to reset password'
 security:
   - bearerAuth: []
 requestBody:

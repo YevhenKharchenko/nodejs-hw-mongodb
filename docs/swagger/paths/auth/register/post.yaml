@@ -1,7 +1,7 @@
 tags:
   - Auth
-summary: Register contact
-operationId: registerContact
+summary: Register user
+operationId: registerUser
 description: 'Register a user with payload'
 security:
   - bearerAuth: []
