@@ -50,7 +50,7 @@ requestBody:
             format: binary
             example: https://res.cloudinary.com/uqwgdu/image/upload/image.jpg
 responses:
-  '201':
+  '200':
     description: Updates a contact
     content:
       application/json:
@@ -72,3 +72,5 @@ responses:
               $ref: ../../../components/schemas/contact.yaml
   '401':
     $ref: ../../../components/responses/401.yaml
+  '404':
+    $ref: ../../../components/responses/404.yaml
