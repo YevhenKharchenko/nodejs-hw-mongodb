@@ -12,7 +12,7 @@ const contactsSchema = new Schema(
     },
     email: {
       type: String,
-      reguired: true,
+      required: true,
     },
     isFavourite: {
       type: Boolean,
@@ -23,6 +23,14 @@ const contactsSchema = new Schema(
       enum: ['work', 'home', 'personal'],
       required: true,
       default: 'personal',
+    },
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
+    photo: {
+      type: String,
     },
   },
   {
